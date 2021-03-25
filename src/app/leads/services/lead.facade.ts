@@ -1,3 +1,4 @@
+import { Lead } from './../../types/lead';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -5,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Customer } from '~types/customer';
 
-import { setCustomers, updateCustomer, addCustomer } from '../store/lead.actions';
+import { setCustomers } from '../store/lead.actions';
 import {
   CUSTOMERS_ERROR,
   CUSTOMERS_LOADING
@@ -16,7 +17,7 @@ import { AppState } from '../store/leads.types';
 export class CustomerFacade {
   constructor(private store: Store<AppState>) { }
 
-  public setCustomers(customers: Customer[]) {
+  public setCustomers(customers: Lead[]) {
     this.store.dispatch(setCustomers({customers: customers}));
   }
 
@@ -28,15 +29,15 @@ export class CustomerFacade {
     return this.store.pipe(select(CUSTOMERS_ERROR));
   }
 
-  public getCustomers(): Observable<Customer[]> {
+  public getCustomers(): Observable<Lead[]> {
     return this.store.select('customers').pipe(map(state => state.list.results));
   }
 
-  public updateCustomer(id: number, customer: Customer): void {
-    this.store.dispatch(updateCustomer({id, customer}))
-  }
+  // public updateCustomer(id: number, customer: Lead): void {
+  //   this.store.dispatch(updateCustomer({id, customer}))
+  // }
 
-  public addCustomer(customer: Customer): void {
-    this.store.dispatch(addCustomer({customer}))
-  }
+  // public addCustomer(customer: Lead): void {
+  //   this.store.dispatch(addCustomer({customer}))
+  // }
 }

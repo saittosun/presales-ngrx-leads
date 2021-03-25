@@ -2,114 +2,56 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Customer } from '~types/customer';
+import { Lead } from '~types/lead';
 
 @Injectable()
-export class CustomerService {
-  fetchCustomers(): Observable<Customer[]> {
+export class LeadService {
+  fetchLeads(): Observable<Lead[]> {
     return of([
       {
-        id: 1,
-        customername: 'Antwerpen',
-        projectname: 'Nova',
-        status: 'offer',
-        date: 'end of june',
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'test@test.com',
-        phonenumber: 11111111,
-        vat: 11,
-        address: {
-          addressline1: 'kouterbaan',
-          city: 'denderleeuw',
-          state: 'oost-vlanderen',
-          country: 'belgie',
-          zip: 9470
-        }
+        id: "2718d62c-f21d-493c-8717-cfe979927xxx",
+        name: "Mijn Tijden",
+        reference: "A001144",
+        status: "won",
+        pitchDate: "2018-12-16T14:00:000Z",
+        offerDate: "2019-01-07T08:00:000Z",
+        offerPresentationDate: "2019-01-10T10:00:000Z",
+        customer: "54bd4e53-029d-4743-831a-35efc0e003f4",
+        description: "Short description field \nmulti line text",
+        notes: "Notes field for further notes between people working on it"
       },
       {
-        id: 2,
-        customername: 'Renson',
-        projectname: 'Nova',
-        status: 'offer',
-        date: 'end of june',
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'test@test.com',
-        phonenumber: 22222222,
-        vat: 11,
-        address: {
-          addressline1: 'kouterbaan',
-          city: 'denderleeuw',
-          state: 'oost-vlanderen',
-          country: 'belgie',
-          zip: 9470
-        }
+        id: "2718d62c-f21d-493c-8717-cfe979927cbb",
+        name: "Mijn Tijden",
+        reference: "A001144",
+        status: "won",
+        pitchDate: "2018-12-16T14:00:000Z",
+        offerDate: "2019-01-07T08:00:000Z",
+        offerPresentationDate: "2019-01-10T10:00:000Z",
+        customer: "54bd4e53-029d-4743-831a-35efc0e003f4",
+        description: "Short description field \nmulti line text",
+        notes: "Notes field for further notes between people working on it"
       },
       {
-        id: 3,
-        customername: 'Brussel',
-        projectname: 'presales',
-        status: 'offer',
-        date: 'end of june',
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'test@test.com',
-        phonenumber: 11111111,
-        vat: 11,
-        address: {
-          addressline1: 'kouterbaan',
-          city: 'denderleeuw',
-          state: 'oost-vlanderen',
-          country: 'belgie',
-          zip: 9470
-        }
-      },
-      {
-        id: 4,
-        customername: 'Gent',
-        projectname: 'Nova',
-        status: 'offer',
-        date: 'end of june',
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'test@test.com',
-        phonenumber: 11111111,
-        vat: 11,
-        address: {
-          addressline1: 'kouterbaan',
-          city: 'denderleeuw',
-          state: 'oost-vlanderen',
-          country: 'belgie',
-          zip: 9470
-        }
-      },
-      {
-        id: 5,
-        customername: 'Brugge',
-        projectname: 'Nova',
-        status: 'offer',
-        date: 'end of june',
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'test@test.com',
-        phonenumber: 11111111,
-        vat: 11,
-        address: {
-          addressline1: 'kouterbaan',
-          city: 'denderleeuw',
-          state: 'oost-vlanderen',
-          country: 'belgie',
-          zip: 9470
-        }
+        id: "2718d62c-f21d-493c-8717-cfe979927yyy",
+        name: "Mijn Tijden",
+        reference: "A001144",
+        status: "won",
+        pitchDate: "2018-12-16T14:00:000Z",
+        offerDate: "2019-01-07T08:00:000Z",
+        offerPresentationDate: "2019-01-10T10:00:000Z",
+        customer: "54bd4e53-029d-4743-831a-35efc0e003f4",
+        description: "Short description field \nmulti line text",
+        notes: "Notes field for further notes between people working on it"
       },
     ])
   }
 
-  updateCustomer(id: number, customer: Customer): Observable<Customer> {
-    return of({...customer, id})
-  }
+  // updateCustomer(id: number, customer: Lead): Observable<Lead> {
+  //   return of({...customer, id})
+  // }
 
-  addCustomer(customer: Customer): Observable<Customer>{
-    return of({...customer})
-  }
+  // addCustomer(customer: Lead): Observable<Lead>{
+  //   return of({...customer})
+  // }
 }

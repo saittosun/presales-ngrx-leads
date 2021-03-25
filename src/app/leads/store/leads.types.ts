@@ -1,9 +1,10 @@
+import { Lead } from './../../types/lead';
 import { Customer } from '~types/customer';
 
 import { CustomerActions } from './lead.actions';
 
 export interface CustomerListState {
-  results: Customer[];
+  results: Lead[];
   loading: boolean;
   error: string;
 }
@@ -18,7 +19,7 @@ export interface AppState {
 
 export interface CustomerAction {
   type: keyof typeof CustomerActions;
-  results?: Customer[];
+  results?: Lead[];
   error?: string;
   loading?: boolean;
 }

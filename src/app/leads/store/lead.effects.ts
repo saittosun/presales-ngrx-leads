@@ -1,3 +1,4 @@
+import { Lead } from './../../types/lead';
 import { Router } from '@angular/router';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
@@ -6,24 +7,24 @@ import { catchError, map, switchMap, tap } from "rxjs/operators";
 
 import { Customer } from "~types/customer";
 
-import { CustomerService } from "../services/leads.service";
+import { LeadService } from "../services/leads.service";
 
-import { addCustomerFailed, addCustomerSuccess, getCustomersFailed, updateCustomerFailed, updateCustomerSuccess } from "./lead.actions";
+import { getCustomersFailed } from "./lead.actions";
 import { getCustomersSuccess } from "./lead.actions";
 import { CustomerActions } from "./lead.actions";
 
 @Injectable()
 export class CustomerEffects {
   constructor(private actions$: Actions,
-              private customerService: CustomerService,
+              private customerService: LeadService,
               private router: Router) { }
 
   public getCustomers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CustomerActions.getCustomers),
       switchMap(() =>
-        this.customerService.fetchCustomers().pipe(
-          map((results: Customer[]) => getCustomersSuccess({ results })),
+        this.customerService.fetchLeads().pipe(
+          map((results: Lead[]) => getCustomersSuccess({ results })),
           catchError((error: any) => of(getCustomersFailed({ error })))
         )
       )

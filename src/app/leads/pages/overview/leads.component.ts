@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Lead } from '~types/lead';
 import { Subject } from 'rxjs';
 import { CustomerFacade } from '../../services/lead.facade';
-import { CustomerService } from '../../services/leads.service';
+import { LeadService } from '../../services/leads.service';
 
 @Component({
   selector: 'app-leads',
@@ -14,10 +14,18 @@ export class LeadsComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<boolean>();
 
   constructor(private store: CustomerFacade,
-              private customerService: CustomerService) { }
+              private customerService: LeadService) { }
 
   ngOnInit(): void {
     this.store.getCustomers().subscribe(leads => {
+      if(leads.length === 0) {
+        this.customerService.fetchLeads().subscribe(leads => {
+          this.store.setCustomers(leads);
+          this.leads = leads;
+        })
+      } else {
+        this.leads = leads;
+      }
       console.log(leads);
     })
 

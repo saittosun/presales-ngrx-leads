@@ -14,7 +14,7 @@ import { SharedModule } from '~shared/shared.module';
 import { customerReducers } from './store/leads.reducer';
 import { CustomerFacade } from './services/lead.facade';
 import { CustomerEffects } from './store/lead.effects';
-import { CustomerService } from './services/leads.service';
+import { LeadService } from './services/leads.service';
 import { LeadsComponent } from './pages/overview/leads.component';
 import { NewLeadFormComponent } from './pages/new-lead-form/new-lead-form.component';
 import { LeadDetailComponent } from './pages/lead-detail/lead-detail.component';
@@ -33,6 +33,6 @@ import { LeadsRoutingModule } from './leads.routing';
     NewLeadFormComponent,
     LeadDetailComponent
   ],
-  providers: [CustomerEffects, CustomerService, CustomerFacade]
+  providers: [CustomerEffects, LeadService, CustomerFacade]
 })
 export class LeadsModule { }

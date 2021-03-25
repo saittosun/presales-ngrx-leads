@@ -1,13 +1,12 @@
+import { Lead } from './../../types/lead';
 import { Action, createReducer, on } from "@ngrx/store";
 
 import { Customer } from "~types/customer";
 import {
-  addCustomerSuccess,
   getCustomers,
   getCustomersFailed,
   getCustomersSuccess,
   setCustomers,
-  updateCustomerSuccess
 } from "./lead.actions";
 import { CustomerListState } from "./leads.types";
 
@@ -39,41 +38,8 @@ export const listReducer = createReducer(
     })
   ) as any,
   on(
-    updateCustomerSuccess,
-    (state: CustomerListState, { customer }: {customer: Customer}) => {
-      const customerIndex = state.results.findIndex(item => item.id === customer.id)
-      if (customerIndex === -1) {
-        return {
-          ...state,
-          results: state.results.concat(customer),
-          loading: false,
-          error: null
-        }
-      }
-      return  {
-        ...state,
-        results: [
-          ...state.results.slice(0, customerIndex),
-          customer,
-          ...state.results.slice(customerIndex + 1)
-        ],
-        loading: false,
-        error: null
-      }
-    }
-  ) as any,
-  on(
-    addCustomerSuccess,
-    (state: CustomerListState, { customer }: {customer: Customer}) => ({
-      ...state,
-      results: state.results.concat(customer),
-      loading: false,
-      error: null
-    })
-  ) as any,
-  on(
     setCustomers,
-    (state: CustomerListState, { customers }: {customers: Customer[]}) => ({
+    (state: CustomerListState, { customers }: {customers: Lead[]}) => ({
       ...state,
       results: customers,
       loading: false,
