@@ -24,7 +24,7 @@ import { LeadsRoutingModule } from './leads.routing';
   imports: [
     CommonModule,
     LeadsRoutingModule,
-    StoreModule.forFeature('customers', leadReducers),
+    StoreModule.forFeature('leads', leadReducers),
     EffectsModule.forFeature([LeadEffects]),
     SharedModule,
   ],

@@ -2,7 +2,7 @@ import { createSelector } from '@ngrx/store';
 
 import { AppState, LeadsState } from './leads.types';
 
-export const LEADS_ROOT_SELECTOR = (state: AppState) => state.customers;
+export const LEADS_ROOT_SELECTOR = (state: AppState) => state.leads;
 
 export const LEADS_LOADING = createSelector(
   LEADS_ROOT_SELECTOR,

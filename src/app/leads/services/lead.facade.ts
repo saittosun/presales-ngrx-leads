@@ -28,7 +28,7 @@ export class LeadFacade {
   }
 
   public getLeads(): Observable<Lead[]> {
-    return this.store.select('customers').pipe(map(state => state.list.results));
+    return this.store.select('leads').pipe(map(state => state.list.results));
   }
 
   // public updateCustomer(id: number, customer: Lead): void {

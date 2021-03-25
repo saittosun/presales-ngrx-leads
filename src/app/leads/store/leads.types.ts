@@ -13,7 +13,7 @@ export interface LeadsState {
 }
 
 export interface AppState {
-  customers: LeadsState;
+  leads: LeadsState;
 }
 
 export interface LeadAction {
