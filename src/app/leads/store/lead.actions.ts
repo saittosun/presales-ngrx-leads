@@ -1,31 +1,29 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Customer } from '~types/customer';
 import { Lead } from '~types/lead';
 
-export enum CustomerActions {
-  getCustomers = '[Customers]: get all customers',
-  getCustomersSuccess = '[Customers]: get all customers success',
-  getCustomersFailed = '[Customers]: get all customers failed',
-  setCustomers = '[General]: set all customers',
-  setCustomersSuccess = '[General]: set all customers success',
-  setCustomersFailed = '[General]: set all customers failed',
+export enum LeadActions {
+  getLeads = '[Leads]: get all Leads',
+  getLeadsSuccess = '[Leads]: get all Leads success',
+  getLeadsFailed = '[Leads]: get all Leads failed',
+  setLeads = '[General]: set all Leads',
+  setLeadsSuccess = '[General]: set all Leads success',
+  setLeadsFailed = '[General]: set all Leads failed',
 }
 
-export const getCustomers = createAction(CustomerActions.getCustomers);
+export const getLeads = createAction(LeadActions.getLeads);
 
-export const getCustomersSuccess = createAction(
-  CustomerActions.getCustomersSuccess,
+export const getLeadsSuccess = createAction(
+  LeadActions.getLeadsSuccess,
   props<{ results: Lead[] }>()
 );
 
-export const getCustomersFailed = createAction(
-  CustomerActions.getCustomersFailed,
+export const getLeadsFailed = createAction(
+  LeadActions.getLeadsFailed,
   props<{ error: string }>()
 );
 
-// export const updateCustomer = createAction(
-//   CustomerActions.updateCustomer,
+// export const updateCustomer = createActionLead.updateCustomer,
 //   props<{customer: Partial<Lead>, id: number}>()
 // )
 
@@ -54,16 +52,16 @@ export const getCustomersFailed = createAction(
 //   props<{ error: string }>()
 // );
 
-export const setCustomers = createAction(
-  CustomerActions.setCustomers,
-  props<{customers: Lead[]}>()
+export const setLeads = createAction(
+  LeadActions.setLeads,
+  props<{leads: Lead[]}>()
 )
-export const setCustomersSuccess = createAction(
-  CustomerActions.setCustomersSuccess,
-  props<{ customer: Lead }>()
+export const setLeadsSuccess = createAction(
+  LeadActions.setLeadsSuccess,
+  props<{ lead: Lead }>()
 )
 
-export const setCustomersFailed = createAction(
-  CustomerActions.setCustomersFailed,
+export const setLeadsFailed = createAction(
+  LeadActions.setLeadsFailed,
   props<{ error: string }>()
 )

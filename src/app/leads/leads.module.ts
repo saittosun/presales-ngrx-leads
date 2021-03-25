@@ -11,9 +11,9 @@ import { SharedModule } from '~shared/shared.module';
 // import { NewLeadPageComponent } from './pages/new-lead-form/new-lead-form.component';
 // import { LeadEditPageComponent } from './pages/lead-edit/lead-edit.component';
 
-import { customerReducers } from './store/leads.reducer';
-import { CustomerFacade } from './services/lead.facade';
-import { CustomerEffects } from './store/lead.effects';
+import { leadReducers } from './store/leads.reducer';
+import { LeadFacade } from './services/lead.facade';
+import { LeadEffects } from './store/lead.effects';
 import { LeadService } from './services/leads.service';
 import { LeadsComponent } from './pages/overview/leads.component';
 import { NewLeadFormComponent } from './pages/new-lead-form/new-lead-form.component';
@@ -24,8 +24,8 @@ import { LeadsRoutingModule } from './leads.routing';
   imports: [
     CommonModule,
     LeadsRoutingModule,
-    StoreModule.forFeature('customers', customerReducers),
-    EffectsModule.forFeature([CustomerEffects]),
+    StoreModule.forFeature('customers', leadReducers),
+    EffectsModule.forFeature([LeadEffects]),
     SharedModule,
   ],
   declarations: [
@@ -33,6 +33,6 @@ import { LeadsRoutingModule } from './leads.routing';
     NewLeadFormComponent,
     LeadDetailComponent
   ],
-  providers: [CustomerEffects, LeadService, CustomerFacade]
+  providers: [LeadEffects, LeadService, LeadFacade]
 })
 export class LeadsModule { }

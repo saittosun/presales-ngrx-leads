@@ -1,58 +1,57 @@
 import { Lead } from './../../types/lead';
 import { Action, createReducer, on } from "@ngrx/store";
 
-import { Customer } from "~types/customer";
 import {
-  getCustomers,
-  getCustomersFailed,
-  getCustomersSuccess,
-  setCustomers,
+  getLeads,
+  getLeadsFailed,
+  getLeadsSuccess,
+  setLeads,
 } from "./lead.actions";
-import { CustomerListState } from "./leads.types";
+import { LeadListState } from "./leads.types";
 
-export const CUSTOMER_INITIAL_STATE: CustomerListState = {
+export const LEAD_INITIAL_STATE: LeadListState = {
   results: [],
   loading: false,
   error: null
 };
 
 export const listReducer = createReducer(
-  CUSTOMER_INITIAL_STATE as any,
-  on(getCustomers, (actionState: CustomerListState) => ({
+  LEAD_INITIAL_STATE as any,
+  on(getLeads, (actionState: LeadListState) => ({
     ...actionState,
     loading: true,
     error: null
   })) as any,
   on(
-    getCustomersSuccess,
-    (state: CustomerListState, { results }: any) => ({
+    getLeadsSuccess,
+    (state: LeadListState, { results }: any) => ({
       ...state
     })
   ) as any,
   on(
-    getCustomersFailed,
-    (state: CustomerListState, { error }: any) => ({
+    getLeadsFailed,
+    (state: LeadListState, { error }: any) => ({
       ...state,
       loading: false,
       error
     })
   ) as any,
   on(
-    setCustomers,
-    (state: CustomerListState, { customers }: {customers: Lead[]}) => ({
+    setLeads,
+    (state: LeadListState, { leads }: {leads: Lead[]}) => ({
       ...state,
-      results: customers,
+      results: leads,
       loading: false,
       error: null
     })
   ) as any,
 );
 
-function listReducerWrapper(state: CustomerListState, action: Action) {
+function listReducerWrapper(state: LeadListState, action: Action) {
   return listReducer(state, action);
 }
 
-export const customerReducers: any = {
+export const leadReducers: any = {
   list: listReducerWrapper
   // detail: detailReducer,
 };
