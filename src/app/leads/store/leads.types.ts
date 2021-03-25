@@ -1,23 +1,24 @@
-import { Lead } from "~types/lead";
-import { LeadActions } from "./lead.actions";
+import { Customer } from '~types/customer';
 
-export interface LeadListState {
-  projects: Lead[];
+import { CustomerActions } from './lead.actions';
+
+export interface CustomerListState {
+  results: Customer[];
   loading: boolean;
   error: string;
 }
 
-export interface LeadsState {
-  lead: LeadListState;
+export interface CustomersState {
+  list: CustomerListState;
 }
 
-export interface AppLeadState {
-  leads: LeadsState;
+export interface AppState {
+  customers: CustomersState;
 }
 
-export interface LeadAction {
-  type: keyof typeof LeadActions;
-  projects?: Lead[];
+export interface CustomerAction {
+  type: keyof typeof CustomerActions;
+  results?: Customer[];
   error?: string;
   loading?: boolean;
 }

@@ -1,5 +1,4 @@
 import { LeadsModule } from './leads/leads.module';
-import { LeadService } from './leads/services/leads.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';

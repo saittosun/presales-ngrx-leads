@@ -1,30 +1,42 @@
-import { Injectable } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { Lead } from './../../types/lead';
-import { map } from "rxjs/operators";
-import { setLeads } from "../store/lead.actions";
-import { AppLeadState } from "../store/leads.types";
-import { Observable } from "rxjs";
-import { LEADS_ERROR, LEADS_LOADING } from "../store/lead.selectors";
+import { Customer } from '~types/customer';
+
+import { setCustomers, updateCustomer, addCustomer } from '../store/lead.actions';
+import {
+  CUSTOMERS_ERROR,
+  CUSTOMERS_LOADING
+} from '../store/lead.selectors';
+import { AppState } from '../store/leads.types';
 
 @Injectable()
-export class LeadFacade {
-  constructor(private store: Store<AppLeadState>) {}
+export class CustomerFacade {
+  constructor(private store: Store<AppState>) { }
 
-  public setLeads(leads: Lead[]) {
-    this.store.dispatch(setLeads({leads: leads}));
+  public setCustomers(customers: Customer[]) {
+    this.store.dispatch(setCustomers({customers: customers}));
   }
 
   public selectLoading(): Observable<boolean> {
-    return this.store.pipe(select(LEADS_LOADING));
+    return this.store.pipe(select(CUSTOMERS_LOADING));
   }
 
   public selectError(): Observable<string> {
-    return this.store.pipe(select(LEADS_ERROR));
+    return this.store.pipe(select(CUSTOMERS_ERROR));
   }
 
-  public getLeads(): Observable<Lead[]> {
-    return this.store.select('leads').pipe(map(state => state.lead.projects));
+  public getCustomers(): Observable<Customer[]> {
+    return this.store.select('customers').pipe(map(state => state.list.results));
+  }
+
+  public updateCustomer(id: number, customer: Customer): void {
+    this.store.dispatch(updateCustomer({id, customer}))
+  }
+
+  public addCustomer(customer: Customer): void {
+    this.store.dispatch(addCustomer({customer}))
   }
 }

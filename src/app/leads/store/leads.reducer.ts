@@ -1,45 +1,92 @@
-import { getLeads, getLeadsFailed, getLeadsSuccess, setLeads } from './lead.actions';
-import { Action, createReducer, on } from '@ngrx/store';
-import { LeadListState } from './leads.types';
-import { Lead } from '~types/lead';
+import { Action, createReducer, on } from "@ngrx/store";
 
-export const LEAD_INITIAL_STATE: LeadListState = {
-  projects: [],
+import { Customer } from "~types/customer";
+import {
+  addCustomerSuccess,
+  getCustomers,
+  getCustomersFailed,
+  getCustomersSuccess,
+  setCustomers,
+  updateCustomerSuccess
+} from "./lead.actions";
+import { CustomerListState } from "./leads.types";
+
+export const CUSTOMER_INITIAL_STATE: CustomerListState = {
+  results: [],
   loading: false,
   error: null
 };
 
-export const leadReducer = createReducer(
-  on(getLeads, (actionState: LeadListState) => ({
+export const listReducer = createReducer(
+  CUSTOMER_INITIAL_STATE as any,
+  on(getCustomers, (actionState: CustomerListState) => ({
     ...actionState,
     loading: true,
     error: null
   })) as any,
-  on(getLeadsSuccess,
-    (state: LeadListState, { results }: any) => ({
-      ...state,
-      loading: results,
-      error: null
-    })) as any,
-  on(getLeadsFailed,
-    (state: LeadListState, { error }: any) => ({
+  on(
+    getCustomersSuccess,
+    (state: CustomerListState, { results }: any) => ({
+      ...state
+    })
+  ) as any,
+  on(
+    getCustomersFailed,
+    (state: CustomerListState, { error }: any) => ({
       ...state,
       loading: false,
       error
-    })) as any,
-  on(setLeads,
-    (state: LeadListState, { leads }: { leads: Lead[]}) => ({
+    })
+  ) as any,
+  on(
+    updateCustomerSuccess,
+    (state: CustomerListState, { customer }: {customer: Customer}) => {
+      const customerIndex = state.results.findIndex(item => item.id === customer.id)
+      if (customerIndex === -1) {
+        return {
+          ...state,
+          results: state.results.concat(customer),
+          loading: false,
+          error: null
+        }
+      }
+      return  {
+        ...state,
+        results: [
+          ...state.results.slice(0, customerIndex),
+          customer,
+          ...state.results.slice(customerIndex + 1)
+        ],
+        loading: false,
+        error: null
+      }
+    }
+  ) as any,
+  on(
+    addCustomerSuccess,
+    (state: CustomerListState, { customer }: {customer: Customer}) => ({
       ...state,
-      projects: leads,
+      results: state.results.concat(customer),
       loading: false,
       error: null
-    })) as any,
+    })
+  ) as any,
+  on(
+    setCustomers,
+    (state: CustomerListState, { customers }: {customers: Customer[]}) => ({
+      ...state,
+      results: customers,
+      loading: false,
+      error: null
+    })
+  ) as any,
 );
 
-function leadReducerWrapper(state: LeadListState, action: Action) {
-  return leadReducer(state, action)
+function listReducerWrapper(state: CustomerListState, action: Action) {
+  return listReducer(state, action);
 }
 
-export const leadReducers: any = {
-  lead: leadReducerWrapper
-}
+export const customerReducers: any = {
+  list: listReducerWrapper
+  // detail: detailReducer,
+};

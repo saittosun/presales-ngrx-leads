@@ -1,15 +1,25 @@
 import { createSelector } from '@ngrx/store';
 
-import { AppLeadState, LeadsState } from './leads.types';
+import { AppState, CustomersState } from './leads.types';
 
-export const LEADS_ROOT_SELECTOR = (state: AppLeadState) => state.leads;
+export const CUSTOMERS_ROOT_SELECTOR = (state: AppState) => state.customers;
 
-export const LEADS_LOADING = createSelector(
-  LEADS_ROOT_SELECTOR,
-  (state: LeadsState) => state.lead.loading,
+export const CUSTOMERS_LOADING = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.loading,
 );
 
-export const LEADS_ERROR = createSelector(
-  LEADS_ROOT_SELECTOR,
-  (state: LeadsState) => state.lead.error,
+export const CUSTOMERS_ERROR = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.error,
 );
+
+export const CUSTOMER_UPDATE = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.results
+)
+
+export const CUSTOMER_ADD = createSelector(
+  CUSTOMERS_ROOT_SELECTOR,
+  (state: CustomersState) => state.list.results
+)
