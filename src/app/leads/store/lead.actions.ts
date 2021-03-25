@@ -3,7 +3,7 @@ import { createAction, props } from "@ngrx/store"
 import { Lead } from '~types/lead';
 
 export enum LeadActions {
-  setLeads = '[General]= set all leads',
+  setLeads = '[General]: set all leads',
   setLeadsSuccess = '[General]: set all leads success',
   setLeadsFailed = '[General]: set all leads failed',
   getLeads = "[Leads]: get all leads",

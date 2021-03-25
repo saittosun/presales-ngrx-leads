@@ -24,10 +24,6 @@ export class LeadFacade {
     return this.store.pipe(select(LEADS_ERROR));
   }
 
-  // public getLeads() {
-  //   return this.store.select('leads').pipe(map(state => state.projects));
-  // }
-
   public getLeads(): Observable<Lead[]> {
     return this.store.select('leads').pipe(map(state => state.lead.projects));
   }

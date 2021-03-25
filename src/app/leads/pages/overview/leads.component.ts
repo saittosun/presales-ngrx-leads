@@ -14,30 +14,20 @@ export class LeadsComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<boolean>();
 
   constructor(private leadService: LeadService,
-              private store: LeadFacade) { }
+              private store: LeadFacade,) { }
 
   ngOnInit(): void {
-    // this.store.getLeads().subscribe(leads => {
-    //   console.log(leads);
-    //   if(leads.length === 0) {
-    //     this.leadService.fetchLeads().subscribe(leads => {
-    //       console.log(leads);
-    //       this.store.setLeads(leads);
-    //       this.leads = leads;
-    //     })
-    //   } else {
-    //     this.leads = leads;
-    //   }
-    // })
-
-    this.leadService.fetchLeads().subscribe(leads => {
+    this.store.getLeads().subscribe(leads => {
       console.log(leads);
-      this.store.setLeads(leads);
-      this.leads = leads;
-      console.log(this.leads);
+      // if(leads.length === 0) {
+      //   this.leadService.fetchLeads().subscribe(leads => {
+      //     console.log(leads);
+      //     this.leads = leads;
+      //   })
+      // } else {
+      //   this.leads = leads;
+      // }
     })
-
-
   }
 
   ngOnDestroy(): void {
